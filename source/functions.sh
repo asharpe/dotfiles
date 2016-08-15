@@ -111,3 +111,14 @@ svn () {
 	# TODO we don't want to page the update command
 	fi | $pager
 }
+
+netstat() {
+	if [[ "$1" = -tlpn ]]
+	then
+		netstat -anf inet | awk '$1 ~ /tcp/ && $NF == "LISTEN" { count = split($4, bits, "."); command = "lsof -nP -i:" bits[count] "| awk \"NR>1 && /LISTEN/ {print \\$2}\""; command | getline pid; $(NF+1) = pid; print}' | column -t
+	else
+		command netstat "$@"
+	fi
+}
+export -f netstat
+

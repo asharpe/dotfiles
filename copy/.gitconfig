@@ -2,7 +2,7 @@
 	ui = true
 [user]
 	name = Andrew Sharpe
-	email = asharpe@squiz.com.au
+	email = EMAIL
 [push]
 	default = simple
 [alias]
