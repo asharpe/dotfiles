@@ -31,6 +31,7 @@ git_prompt_locations=(
 	/usr/local/Cellar/git/*/etc/bash_completion.d/git-prompt.sh
 	/etc/bash_completion.d/git
 	/Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-prompt.sh
+	/Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh
 )
 for f in "${git_prompt_locations[@]}"
 do
@@ -42,12 +43,17 @@ done
 unset f
 type __git_ps1 >&/dev/null || _git_prompt=''
 
+# default
+machine_name='\h'
+# override
+[[ -f ~/.machine-name ]] && machine_name=$(< ~/.machine-name)
+
 if [ "$color_prompt" = yes ]; then
 	if [ "$UID" -eq 0 ]; then
-		PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]'$_git_prompt'$ '
+		PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u@'$machine_name'\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]'$_git_prompt'$ '
 #		PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]$(__git_ps1)\$ '
 	else
-		PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@workstation\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]'$_git_prompt'$ '
+		PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@'$machine_name'\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]'$_git_prompt'$ '
 	fi
 else
 #	PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(__git_ps1)\$ '
