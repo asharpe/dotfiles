@@ -7,20 +7,18 @@ is_osx || return 1
 # Homebrew recipes
 recipes=(
   ansible
-  bash
-  cowsay
+  coreutils
   git
-  git-extras
+  hammerspoon
   htop-osx
-  hub
-  id3tool
   lesspipe
-  man2html
-  mercurial
+  macvim
+  netcat
   nmap
-  sl
-  ssh-copy-id
-  the_silver_searcher
+  pass
+  polipo
+  pstree
+  rocker
   tree
 )
 
@@ -38,13 +36,3 @@ if [[ "$(type -P $binroot/htop)" ]] && [[ "$(stat -L -f "%Su:%Sg" "$binroot/htop
   sudo chmod u+s "$binroot/htop"
 fi
 
-# bash
-if [[ "$(type -P $binroot/bash)" && "$(cat /etc/shells | grep -q "$binroot/bash")" ]]; then
-  e_header "Adding $binroot/bash to the list of acceptable shells"
-  echo "$binroot/bash" | sudo tee -a /etc/shells >/dev/null
-fi
-if [[ "$(dscl . -read ~ UserShell | awk '{print $2}')" != "$binroot/bash" ]]; then
-  e_header "Making $binroot/bash your default shell"
-  sudo chsh -s "$binroot/bash" "$USER" >/dev/null 2>&1
-  e_arrow "Please exit and restart all your shells."
-fi
