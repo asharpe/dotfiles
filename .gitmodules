@@ -46,3 +46,6 @@
 [submodule "link/.vim/bundle/closetag"]
 	path = link/.vim/bundle/closetag
 	url = https://github.com/docunext/closetag.vim.git
+[submodule "link/.password-store"]
+	path = link/.password-store
+	url = https://gitlab.com/asharpe/dotfiles
