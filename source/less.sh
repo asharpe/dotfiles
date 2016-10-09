@@ -10,3 +10,5 @@ export PAGER=less
 # -R handle colours nicely
 export LESS="-iMSx4 -FXR"
 
+# handle utf-8
+export LESSCHARSET=utf-8

@@ -31,7 +31,9 @@ module VagrantPlugins
 end
 
 
+
 Vagrant.configure("2") do |config|
+
 	# I like using mdns for my VMs...
 	config.vm.provision :shell, :inline => <<-EOSH
 		type yum >/dev/null 2>&1 || {
@@ -55,6 +57,7 @@ Vagrant.configure("2") do |config|
 			-A FORWARD -j REJECT --reject-with icmp-host-prohibited
 			COMMIT
 		EOF
+		# TODO doesn't work for CentOS 7
 		/etc/init.d/iptables restart
 
 		[[ -f /etc/yum.repos.d/epel.repo ]] && skip=1 || skip=0

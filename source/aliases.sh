@@ -70,3 +70,5 @@ alias cgoban='/usr/lib/jvm/java-6-sun/jre/bin/java -Xmx150m -Dapple.awt.textanti
 
 alias puppet='tmux new-session -A -t puppet'
 
+alias ldapsearch_squiz='ldapsearch -x -y <(awk '\''$1 == "machine" && $2 == "gitlab.squiz.net" {printf "%s", $NF}'\'' ~/.netrc)'
+alias ldapsearch_client='ldapsearch -x -y <(awk '\''$1 == "machine" && $2 == "gitlab.squiz.net" {printf "%s", $NF}'\'' ~/.netrc) -b dc=clients,dc=net'

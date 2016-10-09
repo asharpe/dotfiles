@@ -1,4 +1,6 @@
 " ~/.(g)vi(m)rc | vi: set ft=vim: | Curtis Free (http://curtisfree.com)
+scriptencoding utf-8
+set encoding=utf-8
 
 " Miscellaneous
 set modelines=5
