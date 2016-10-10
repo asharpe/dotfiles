@@ -9,7 +9,6 @@ recipes=(
   ansible
   coreutils
   git
-  hammerspoon
   htop-osx
   lesspipe
   macvim
